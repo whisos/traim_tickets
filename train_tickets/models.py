@@ -7,6 +7,8 @@ class Customer(models.Model):
 
 class Place(models.Model):
     place = models.CharField(max_length=30)
+    description = models.TextField()
+    image = models.ImageField()
 
 class Booking(models.Model):
     user = models.ForeignKey(Customer, on_delete=models.CASCADE)

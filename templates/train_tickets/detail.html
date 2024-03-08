@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% extends "base.html" %}
+
 <body>
-    <h1>Місце {{place.place}}</h1>
+    {% block content %}
+        <h1>Місце {{place.place}}</h1>
+        <br>
+        <h2>{{place.description}}</h2>
+        <br>
+        <button>Замовити білет</button>
+    {% endblock %}
 </body>
-</html>

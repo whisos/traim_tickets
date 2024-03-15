@@ -11,7 +11,7 @@ class Place(models.Model):
     image = models.ImageField()
 
 class Booking(models.Model):
-    user = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    #user = models.ForeignKey(Customer, on_delete=models.CASCADE)
     place = models.ForeignKey(Place, on_delete=models.SET_NULL, null=True)
     date = models.DateField()
     time = models.TimeField()

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form method="POST" action="{% url 'place_form' place_id %}">
+        {% csrf_token %}
+        <label for="train_time">Час виходу потягу</label>
+        <input type="timel" id="train_time" name="time">
+        <br>
+        <label for="train_date">День виходу потягу</label>
+        <input type="datetime-local" id="train_date" name="train_date">
+        <br>
+        <input type="hidden" name="place_id" value="{{ place_id }}">
+        <button type="submit">Замовити квиток</button>
+    </form>
+{% endblock %}

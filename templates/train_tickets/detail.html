@@ -6,6 +6,8 @@
         <br>
         <h2>{{place.description}}</h2>
         <br>
-        <button>Замовити білет</button>
+        <a href="{% url 'place_form' place.id %}">
+            <button>Замовити білет</button>
+        </a>
     {% endblock %}
 </body>

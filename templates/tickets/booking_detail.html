@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+<body>
+    {% block content %}
+    <div class="container mt-3">
+        <p>Замовник квитка: <span class="badge text-bg-primary">{{ booking.user }}</span></p>
+        <p>Дата виїзду: <span class="badge text-bg-secondary">{{ booking.date }}</span></p>
+        <p>Час виїзду: <span class="badge text-bg-secondary">{{ booking.time }}</span></p>
+    </div>
+    {% endblock %}
+</body>

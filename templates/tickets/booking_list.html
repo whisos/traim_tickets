@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body>
+    {% block content %}
+    <div class="main-content">
+        <h1>Список замовлень</h1>
+        {% for booking in bookings %}
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <a href="{% url 'tickets:booking_detail' booking.pk %}"><h5 class="card-title">Квиток</h5></a>
+                <h6 class="card-subtitle mb-2 text-body-secondary">{{ booking.user }}</h6>
+                <p class="card-text">{{ booking.place }} {{ booking.date }} {{ booking.time }}</p>
+              </div>
+            </div>
+        {% endfor %}
+    {% endblock %}
+    </div>
+</body>
+</html>

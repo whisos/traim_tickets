@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body>
+    {% block content %}
+    <div class="main-content">
+        <h1>Білети</h1>
+        {% for place in places %}
+        <div class="card" style="width: 18rem;">
+            <img src= "{{ place.image.url }}" class="card-img-top" alt="..." style="max-height: 214px; max-width: 286;">
+            <div class="card-body">
+              <a href="{% url 'tickets:place_detail' place.pk %}"><h5 class="card-title">{{ place.place }}</h5></a>
+              <p class="card-text">{{ place.short_description }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    {% endblock %}
+    </div>
+</body>
+</html>

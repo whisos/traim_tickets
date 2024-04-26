@@ -1,41 +1,40 @@
 from django.shortcuts import render, redirect
 from train_tickets.models import *
+from train_tickets.forms import PlaceAdd, TicketAdd
 from django.http import HttpResponse
+from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-def index(request):
-    places = Place.objects.all()
-    context = {"places":places}
-    return render(request, "train_tickets/index.html", context=context)
+class PlaceListView(ListView):
+    model = Place
+    context_object_name = "places"
+    template_name = "tickets/place_list.html"
 
 
-def place_detail(request, place_id):
-    place = Place.objects.get(id=place_id)
-    context = {"place":place}
-    return render(request, "train_tickets/detail.html", context=context)
+class PlaceDetailView(DetailView):
+    model = Place
+    template_name = "tickets/place_detail.html"
+    context_object_name = "place"
 
-def place_form(request, place_id):
-    if request.method == "POST":
-        date = request.POST.get("train_date")
-        time = request.POST.get("train_time")
-        booking = Booking.objects.create(
-          place=Place.objects.get(id=place_id),
-          date=date,
-          time=time
-        )
-        return redirect("booking_details", pk=booking.id)
-    else:
-        return render(request, template_name="train_tickets/place_form.html", context={"place_id": place_id})
+class PlaceAddView(CreateView):
+    model = Place
+    template_name = "tickets/place_add.html"
+    form_class = PlaceAdd
+    success_url = "/"
 
-def booking_details(request, pk):
-    try:
-        booking = Booking.objects.get(id=pk)
-        context = {
-            "booking": booking
-        },
-        return render(request, template_name="booking/booking_details.html", context=context)
-    except Booking.DoesNotExist:
-        return HttpResponse(
-            "This booking doesn't exist",
-            status=404
-        )
+class BookingAddView(LoginRequiredMixin, CreateView):
+    model = Booking
+    template_name = "tickets/booking_add.html"
+    form_class = TicketAdd
+    success_url = "/"
+
+class BookingListView(ListView):
+    model = Booking
+    context_object_name = "bookings"
+    template_name = "tickets/booking_list.html"
+
+class BookingDetailView(DetailView):
+    model = Booking
+    template_name = "tickets/booking_detail.html"
+    context_object_name = "booking"

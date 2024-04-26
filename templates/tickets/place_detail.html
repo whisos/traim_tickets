@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load static %}
+<body>
+    {% block content %}
+    <img src="{{ place.image.url }}" class="place_img" alt = "Зображення" style="max-width: 480px; max-height: 480px;">
+        <h1>{{ place.place }}</h1></li>
+        <p>{{ place.description }}</p></li>
+        <a href="{% url 'tickets:booking_add' %}" class="btn btn-primary">Замовити квиток</a></li>
+    {% endblock %}
+</body>

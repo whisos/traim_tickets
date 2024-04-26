@@ -9,7 +9,7 @@
     <div class="main-content">
         <h1>Білети</h1>
         {% for place in places %}
-        <div class="card" style="width: 18rem;">
+        <div class="card mb-3" style="width: 18rem; display: inline-block;">
             <img src= "{{ place.image.url }}" class="card-img-top" alt="..." style="max-height: 214px; max-width: 286;">
             <div class="card-body">
               <a href="{% url 'tickets:place_detail' place.pk %}"><h5 class="card-title">{{ place.place }}</h5></a>
